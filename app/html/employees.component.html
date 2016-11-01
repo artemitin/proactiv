@@ -1,0 +1,69 @@
+<h2>Employees</h2>
+<div class="panel">
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    </span>
+    <input #employeeName type="text" class="form-control" placeholder="Employee name" aria-describedby="basic-addon1">
+
+    <span class="input-group-btn">
+      <button (click)="add(employeeName.value); employeeName.value=''"
+              type="button" class="btn btn-default" aria-label="Left Align">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">Add</span>
+      </button>
+    </span>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <table class="table">
+    <thead>
+    <tr>
+      <th></th>
+      <th>#</th>
+      <th>Name</th>
+      <th>Proactivity</th>
+      <th>Last Wceek</th>
+      <th>Top</th>
+      <th>Promote</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees; let i = index;" (click)="onSelect(employee)"
+          [class.selected]="employee === selectedEmployee">
+        <th>
+          <div *ngIf="i===0"><span class="glyphicon glyphicon-star" style="color:gold"></span></div>
+          <div *ngIf="i===1"><span class="glyphicon glyphicon-star" style="color:silver"></span></div>
+          <div *ngIf="i===2"><span class="glyphicon glyphicon-star" style="color:#CD7F32"></span></div>
+        </th>
+        <th>{{i + 1}}</th>
+        <td>{{employee.name}}</td>
+        <td>{{employee.currentLevel}}
+          <!--<span *ngIf="employee.currentLevel > employee.lastLevel" class="glyphicon glyphicon-arrow-up" style="color:green"></span>-->
+          <!--<span *ngIf="employee.currentLevel < employee.lastLevel" class="glyphicon glyphicon-arrow-down" style="color:red"></span>-->
+        </td>
+        <td>{{employee.lastLevel}}</td>
+        <td>{{employee.topLevel}}</td>
+        <td>
+          <button (click)="promote(employee)" type="button" class="btn btn-default btn-xs" aria-label="Promote">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="selectedEmployee">
+  <h2>
+    {{selectedEmployee.name | uppercase}} is my employee
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+  <button class="delete" (click)="delete(selectedEmployee); $event.stopPropagation()">x</button>
+</div>
+
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->

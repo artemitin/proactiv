@@ -1,7 +1,19 @@
-import { Component } from '@angular/core';
+import { Component }          from '@angular/core';
 
 @Component({
-    selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+  moduleId: module.id,
+  selector: 'my-app',
+
+  templateUrl: 'html/app.component.html'
+  //styleUrls: ['app.component.css']
 })
-export class AppComponent { }
+export class AppComponent {
+  title = 'Top Proactive';
+}
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/
